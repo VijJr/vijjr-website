@@ -1,0 +1,21 @@
+
+
+
+.placement {
+    position: absolute;
+    top:20px;
+    left: 3vh
+}
+
+.hollow-shadow {
+    
+    font-weight: 400;
+    font-size: 30px; /* Adjust font size as needed */
+    color: rgba(255, 255, 255, 0.576)
+
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }

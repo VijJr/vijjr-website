@@ -1,0 +1,46 @@
+
+<h1 style="padding:30px">Recognition</h1><div class="background">
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-lg-2" style="text-align: center; cursor:pointer; padding-bottom: 20px" (click)="openCertModal(0)">
+            <img src="../../../assets/sparkle (2).png" alt="" class="star"><br>
+            Presidential Volunteer Service Award - Bronze
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-9">
+
+        </div>
+        <div class="col-lg-2" style="text-align: center; cursor:pointer; padding-bottom: 20px"  (click)="openCertModal(1)">
+            <img src="../../../assets/sparkle (2).png" alt="" class="star"><br>
+            Hacker Rank Project Euler+ National top 100 Global top 2000
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-lg-2" style="text-align: center; padding-bottom: 20px">
+            <img src="../../../assets/sparkle (2).png" alt="" class="star"><br>
+            American Computer Science League 6th in State
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-7">
+
+        </div>
+        <div class="col-lg-2" style="text-align: center; cursor:pointer; padding-bottom: 20px"  (click)="openCertModal(2)">
+            <img src="../../../assets/sparkle (2).png" alt="" class="star"><br>
+            Google Machine Learning Engineer Certification 
+        </div>
+    </div>
+</div>
+
+<div class="back" (click)="close()" *ngIf="openModal">
+    <div class="i">
+        <img [src]="'../../../assets/certifications/' + list[recentDisplay]" alt=""  (click)="this.innerClick = true;">
+    </div>
+</div>

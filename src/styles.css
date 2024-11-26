@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("assets/back_norm.png");
+  }
+
+  html *
+  {
+    font-family: "Farro", sans-serif;
+    color:rgba(255, 255, 255, 0.576)
+  }

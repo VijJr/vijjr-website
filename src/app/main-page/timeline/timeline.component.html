@@ -1,0 +1,9 @@
+<div class="bar"></div>
+<div class="dots" [style.top.%]="topPositionVal"  id="dots">
+    <span [ngClass]="{'selected': selected == 0, 'selectedInv': selected == 4, 'dot': !isInv, 'dotInv':isInv}" ></span><br>
+    <span [ngClass]="{'selected': selected == 1, 'selectedInv': selected == 5, 'dot': !isInv, 'dotInv':isInv}" ></span><br>
+    <span [ngClass]="{'selected': selected == 2, 'selectedInv': selected == 6, 'dot': !isInv, 'dotInv':isInv}" ></span><br>
+    <span [ngClass]="{'selected': selected == 3, 'selectedInv': selected == 7, 'dot': !isInv, 'dotInv':isInv}" ></span>
+</div>
+
+

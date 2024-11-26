@@ -1,0 +1,68 @@
+.back{
+  background-image: url("../../../assets/back_norm.png");
+  -webkit-filter: invert(1);
+  filter: invert(1);
+  background-color: #f7f8fd; 
+  width: auto; 
+  height: auto;
+  z-index: 0 !important;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.expanding-div {
+  width: 1px;
+  margin: 0 auto;
+  padding: 0px;
+  background-color: #f0f0f0;
+  color: #333;
+  transition: width 0.4s ease-in-out;
+}
+
+.expanding-div.expanded {
+  width: 100%;
+}
+
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-in.faded {
+  opacity: 1;
+
+}
+
+p {
+  width: 100%
+}
+
+
+.content {
+  visibility:hidden;
+  -webkit-filter: invert(1);
+  filter: invert(1);
+  color: rgba(0, 0, 0, 0.576)
+}
+.content.expanded  {
+  visibility:visible;
+}
+
+.planet{
+  width: 15vh;
+  transition: all .2s ease-in-out; 
+  z-index: 0;
+  position: relative
+}
+
+.planet:hover { 
+  transform: scale(1.4); 
+}
+
+.row{
+  width: 100%;
+  padding-bottom: 30px
+}
+
+
