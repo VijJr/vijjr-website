@@ -10,7 +10,7 @@ export class AwardsComponent {
   innerClick = false;
   recentDisplay = -1;
 
-  list = [ 'pvsa.png', 'euler.png', '']
+  list = [ 'pvsa.png', 'euler.png', 'gcp.png']
   
   openCertModal(type:number){
     this.recentDisplay = type;
