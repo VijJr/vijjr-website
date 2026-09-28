@@ -1,9 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import {
-  ACTIVITIES, COURSES, Course, DISCIPLINES, Discipline, HONORS, PROFILE, RECOGNITION, Recognition,
-} from '../../data/portfolio';
-
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+import { ACTIVITIES, COURSES, PROFILE, RECOGNITION, Recognition } from '../../data/portfolio';
 
 @Component({
   selector: 'app-about',
@@ -12,25 +8,13 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 })
 export class AboutComponent {
   readonly profile = PROFILE;
-  readonly disciplines = DISCIPLINES;
+  readonly courses = COURSES;
   readonly recognition = RECOGNITION;
   readonly activities = ACTIVITIES;
-  readonly honors = [...HONORS].reverse();
 
-  filter: Discipline | 'all' = 'all';
   cert: Recognition | null = null;
 
   @ViewChild('certDialog') private certDialog?: ElementRef<HTMLDialogElement>;
-
-  get courses(): Course[] {
-    const f = this.filter;
-    return f === 'all' ? COURSES : COURSES.filter(c => c.disciplines.includes(f));
-  }
-
-  formatDate(iso: string): string {
-    const [y, m, d] = iso.split('-').map(Number);
-    return `${MONTHS[m - 1]} ${d}, ${y}`;
-  }
 
   openCert(r: Recognition): void {
     this.cert = r;

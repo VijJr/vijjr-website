@@ -14,8 +14,8 @@ import { HONORS, honorsByTerm } from '../../data/portfolio';
       </li>
     </ol>
     <p class="tally">
-      <span><b>{{ count('Dean’s List') }}×</b> Dean’s List</span>
       <span><b>{{ count('University Honors') }}×</b> University Honors</span>
+      <span><b>{{ count('Dean’s List') }}×</b> Dean’s List</span>
       <span><b>James B. Angell</b> Scholar</span>
     </p>
   `,

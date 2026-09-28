@@ -28,12 +28,8 @@
     <p class="card-sub">{{ work.subtitle }}</p>
     <p class="card-summary">{{ work.summary }}</p>
 
-    <div class="card-foot">
-      <ul class="chips">
-        <li *ngIf="work.cv" class="chip-cv">Computer vision</li>
-        <li *ngFor="let s of work.stack.slice(0, work.cv ? 3 : 4)">{{ s }}</li>
-      </ul>
-      <span class="also" *ngIf="work.also?.length" [attr.aria-label]="'Also linked to ' + work.also!.join(' and ')">
+    <div class="card-foot" *ngIf="work.also?.length">
+      <span class="also" [attr.aria-label]="'Also linked to ' + work.also!.join(' and ')">
         <span class="also-label">Also</span>
         <app-glyph *ngFor="let a of work.also" [d]="a" [size]="9"></app-glyph>
       </span>

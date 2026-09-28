@@ -1,30 +1,26 @@
-.site-footer { border-top: 1px solid var(--line); margin-top: clamp(48px, 8vw, 96px); }
+.site-footer { border-top: 1px solid var(--line); margin-top: clamp(64px, 9vw, 112px); }
 
-.contact { display: grid; gap: 22px; padding-block: clamp(56px, 9vw, 112px); }
-.contact-title {
-  font-size: clamp(2.6rem, 8vw, 6rem);
-  font-weight: 600; letter-spacing: -0.055em; line-height: .95;
+.contact {
+  display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 24px 48px;
+  padding-block: clamp(44px, 6vw, 72px);
 }
-.contact-title .serif { color: var(--muted); letter-spacing: -0.02em; }
-.contact-copy { max-width: 46ch; color: var(--ink-2); font-size: 17px; }
+.contact-title { font-size: clamp(2.2rem, 5.5vw, 3.75rem); font-weight: 600; letter-spacing: -0.05em; line-height: 1; }
+.contact-body { display: grid; gap: 14px; }
 
 .email {
-  display: inline-flex; align-items: center; gap: 10px; justify-self: start;
-  font-size: clamp(1.3rem, 3vw, 2rem); letter-spacing: -0.03em; font-weight: 500;
-  border-bottom: 1.5px solid var(--line-2); padding-bottom: 4px;
+  display: inline-flex; align-items: center; gap: 8px; justify-self: start;
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem); letter-spacing: -0.025em; font-weight: 500;
+  border-bottom: 1.5px solid var(--line-2); padding-bottom: 3px;
   transition: border-color .25s, gap .25s var(--ease);
-  word-break: break-all;
 }
-.email:hover { border-color: var(--ink); gap: 14px; }
+.email:hover { border-color: var(--ink); gap: 12px; }
 
-.contact-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.contact-links { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 15px; color: var(--ink-2); }
+.contact-links a { transition: color .2s; }
+.contact-links a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 
 .foot-bar {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px;
-  padding-block: 22px 28px;
-  border-top: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+  padding-block: 18px 24px; border-top: 1px solid var(--line);
   font-family: var(--font-mono); font-size: 12px; letter-spacing: .04em; color: var(--muted);
 }
-.foot-nav { display: flex; flex-wrap: wrap; gap: 18px; }
-.foot-nav a { display: inline-flex; align-items: center; gap: 7px; transition: color .2s; }
-.foot-nav a:hover { color: var(--ink); }

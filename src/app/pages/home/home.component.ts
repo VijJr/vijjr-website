@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  DISCIPLINES, Discipline, DisciplineInfo, HOME_STATS, PROFILE, RECOGNITION, WORK, Work, workFor,
-} from '../../data/portfolio';
+import { DISCIPLINES, Discipline, DisciplineInfo, HOME_STATS, PROFILE, WORK, Work, workFor } from '../../data/portfolio';
 
 @Component({
   selector: 'app-home',
@@ -13,20 +11,10 @@ export class HomeComponent {
   readonly stats = HOME_STATS;
   readonly disciplines = DISCIPLINES;
   readonly work = WORK;
-  readonly recognition = RECOGNITION.slice(0, 3);
   readonly featured = this.interleaveFeatured();
 
   /** Discipline under the pointer in the hero or index; dims unrelated points on the map. */
   highlight: Discipline | null = null;
-
-  count(d: Discipline): number {
-    return workFor(d).length;
-  }
-
-  /** First few distinct entry titles, e.g. "Siemens · Helivox · Recipe nutrition model". */
-  keyTitles(d: Discipline): string {
-    return [...new Set(workFor(d).map(w => w.title))].slice(0, 3).join(' · ');
-  }
 
   phraseHead(d: DisciplineInfo): string { return d.phrase.split(' ')[0]; }
   phraseTail(d: DisciplineInfo): string { return d.phrase.split(' ').slice(1).join(' '); }

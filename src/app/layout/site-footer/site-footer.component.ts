@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DISCIPLINES, PROFILE } from '../../data/portfolio';
+import { PROFILE } from '../../data/portfolio';
 
 @Component({
   selector: 'app-site-footer',
@@ -8,6 +8,5 @@ import { DISCIPLINES, PROFILE } from '../../data/portfolio';
 })
 export class SiteFooterComponent {
   readonly profile = PROFILE;
-  readonly disciplines = DISCIPLINES;
   readonly year = new Date().getFullYear();
 }

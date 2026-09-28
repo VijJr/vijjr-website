@@ -5,42 +5,31 @@
     <h1 class="display reveal" style="--i: 1">Vijay Ravi</h1>
     <p class="hero-lede reveal" style="--i: 2">
       I build
-      <ng-container *ngFor="let d of disciplines; let last = last; let i = index">
+      <ng-container *ngFor="let d of disciplines; let last = last">
         <ng-container *ngIf="last">and </ng-container>
         <a class="phrase" [routerLink]="'/' + d.id" [attr.data-d]="d.id"
            (mouseenter)="highlight = d.id" (mouseleave)="highlight = null"
            (focus)="highlight = d.id" (blur)="highlight = null"><app-glyph [d]="d.id" [size]="14"></app-glyph><em>{{ phraseHead(d) }}</em> {{ phraseTail(d) }}</a>{{ last ? '.' : ',' }}
       </ng-container>
     </p>
-
-    <dl class="hero-facts reveal" style="--i: 3">
-      <div><dt>GPA</dt><dd>{{ profile.gpa }}</dd></div>
-      <div><dt>Graduation</dt><dd>{{ profile.graduation }}</dd></div>
-      <div><dt>Based in</dt><dd>{{ profile.campus }}</dd></div>
-    </dl>
-
-    <div class="hero-cta reveal" style="--i: 4">
+    <div class="hero-cta reveal" style="--i: 3">
       <a class="btn" [href]="profile.resume" target="_blank" rel="noopener">
         Résumé
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 4v13M6 11l6 6 6-6M5 20h14" /></svg>
       </a>
-      <a class="btn ghost" [href]="'mailto:' + profile.email">Email</a>
-      <a class="btn ghost" [href]="profile.linkedin" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a class="btn ghost" [href]="profile.github" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn ghost" [href]="'mailto:' + profile.email">Email me</a>
     </div>
   </div>
 
   <figure class="hero-map reveal" style="--i: 2">
     <app-triad-map [items]="work" [highlight]="highlight"></app-triad-map>
-    <figcaption class="label">
-      {{ work.length }} entries, placed by discipline. Computer vision sits between Robotics and the rest.
-    </figcaption>
+    <figcaption class="label">Every project, placed by discipline</figcaption>
   </figure>
 </section>
 
 <!-- Proof points -->
 <section class="wrap">
-  <div class="stats reveal" style="--i: 5">
+  <div class="stats reveal" style="--i: 4">
     <div class="stat" *ngFor="let s of stats">
       <span class="stat-value">{{ s.value }}</span>
       <span class="stat-label">{{ s.label }}</span>
@@ -48,25 +37,17 @@
   </div>
 </section>
 
-<!-- Index of disciplines -->
+<!-- Disciplines -->
 <section class="wrap section">
-  <header class="section-head">
-    <p class="label">Index</p>
-    <h2>Three disciplines, one engineer.</h2>
-  </header>
-
+  <header class="section-head"><h2>Disciplines</h2></header>
   <ol class="index">
     <li *ngFor="let d of disciplines" [attr.data-d]="d.id">
       <a class="index-row" [routerLink]="'/' + d.id"
          (mouseenter)="highlight = d.id" (mouseleave)="highlight = null">
         <span class="index-num">{{ d.index }}</span>
-        <app-glyph [d]="d.id" [size]="26"></app-glyph>
+        <app-glyph [d]="d.id" [size]="24"></app-glyph>
         <span class="index-name">{{ d.name }}</span>
-        <span class="index-desc">
-          {{ d.lede }}
-          <span class="index-titles">{{ keyTitles(d.id) }}</span>
-        </span>
-        <span class="index-count">{{ count(d.id) }} entries</span>
+        <span class="index-desc">{{ d.lede }}</span>
         <span class="index-arrow" aria-hidden="true">→</span>
       </a>
     </li>
@@ -75,38 +56,8 @@
 
 <!-- Selected work -->
 <section class="wrap section">
-  <header class="section-head">
-    <p class="label">Selected work</p>
-    <h2>Recent, representative, and shipped.</h2>
-  </header>
+  <header class="section-head"><h2>Selected work</h2></header>
   <div class="grid">
     <app-work-card *ngFor="let w of featured" [work]="w"></app-work-card>
-  </div>
-</section>
-
-<!-- Education -->
-<section class="wrap section">
-  <header class="section-head">
-    <p class="label">Education</p>
-    <h2>{{ profile.school }}</h2>
-  </header>
-
-  <div class="edu">
-    <div class="edu-main">
-      <p class="edu-degree">{{ profile.degree }}</p>
-      <p class="edu-meta">{{ profile.campus }} · {{ profile.graduation }}</p>
-      <div class="edu-gpa">
-        <span class="edu-gpa-value">{{ profile.gpa }}</span>
-        <span class="label">Cumulative GPA</span>
-      </div>
-      <ul class="edu-recog">
-        <li *ngFor="let r of recognition">
-          <span>{{ r.name }}</span>
-          <span class="muted">{{ r.detail }}</span>
-        </li>
-      </ul>
-      <a routerLink="/about" class="text-link">Coursework, honors &amp; activities →</a>
-    </div>
-    <app-honors></app-honors>
   </div>
 </section>

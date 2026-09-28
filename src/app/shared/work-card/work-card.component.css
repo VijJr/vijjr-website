@@ -69,11 +69,6 @@
 .card-sub { font-size: 14px; color: var(--muted); }
 .card-summary { margin-top: 8px; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
 
-.card-foot {
-  display: flex; align-items: flex-end; justify-content: space-between; gap: 12px;
-  margin-top: auto; padding-top: 18px;
-}
-.chip-cv { color: var(--rb-ink) !important; border-color: color-mix(in srgb, var(--rb) 55%, transparent) !important; }
-
-.also { display: inline-flex; align-items: center; gap: 5px; flex: none; padding-bottom: 5px; }
+.card-foot { display: flex; justify-content: flex-end; margin-top: auto; padding-top: 16px; }
+.also { display: inline-flex; align-items: center; gap: 5px; }
 .also-label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }

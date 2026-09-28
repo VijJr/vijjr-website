@@ -14,6 +14,10 @@
 
     <h1 class="display-2">{{ work.title }}</h1>
     <p class="detail-sub">{{ work.subtitle }}<ng-container *ngIf="work.location"> · {{ work.location }}</ng-container></p>
+    <div class="credit" *ngIf="work.credit">
+      <span class="label">{{ work.credit.label }}</span>
+      <h2 class="credit-name">{{ work.credit.name }}</h2>
+    </div>
     <p class="lede">{{ work.summary }}</p>
 
     <div class="detail-links" *ngIf="work.links?.length">
@@ -72,20 +76,12 @@
         <h2 class="label">Stack</h2>
         <ul class="chips"><li *ngFor="let s of work.stack">{{ s }}</li></ul>
       </div>
-
       <div class="aside-block">
-        <h2 class="label">Filed under</h2>
-        <a class="disc-link" [routerLink]="'/' + info.id" [attr.data-d]="info.id">
-          <app-glyph [d]="info.id" [size]="12"></app-glyph>{{ info.name }}
-        </a>
-      </div>
-
-      <div class="aside-block" *ngIf="linked.length">
-        <h2 class="label">Also linked to</h2>
-        <a *ngFor="let d of linked" class="disc-link" [routerLink]="'/' + d.id" [attr.data-d]="d.id">
+        <h2 class="label">Disciplines</h2>
+        <a *ngFor="let d of disciplines" class="disc-link" [routerLink]="'/' + d.id" [attr.data-d]="d.id">
           <app-glyph [d]="d.id" [size]="12"></app-glyph>{{ d.name }}
         </a>
-        <p class="fine" *ngIf="work.cv">Computer vision work lives in Robotics and is linked from Software and Games.</p>
+        <p class="fine" *ngIf="work.cv">Computer vision lives in Robotics and is linked from Software and Games.</p>
       </div>
     </aside>
   </div>
@@ -102,13 +98,4 @@
     </a>
   </nav>
 
-  <section class="wrap section" *ngIf="related.length">
-    <header class="section-head">
-      <p class="label">More in {{ info.short }}</p>
-      <h2>Keep exploring.</h2>
-    </header>
-    <div class="grid">
-      <app-work-card *ngFor="let w of related" [work]="w" [showMedia]="info.id === 'games'"></app-work-card>
-    </div>
-  </section>
 </article>

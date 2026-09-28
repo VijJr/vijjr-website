@@ -15,10 +15,9 @@ export class WorkDetailComponent implements OnDestroy {
   work!: Work;
   info!: DisciplineInfo;
   code = '';
-  linked: DisciplineInfo[] = [];
+  disciplines: DisciplineInfo[] = [];
   prev?: Work;
   next?: Work;
-  related: Work[] = [];
 
   readonly titles = SHIPPED_TITLES;
   readonly titlesAsOf = TITLES_AS_OF;
@@ -50,10 +49,9 @@ export class WorkDetailComponent implements OnDestroy {
     this.work = work;
     this.info = discipline(work.primary);
     this.code = workCode(work);
-    this.linked = (work.also ?? []).map(discipline);
+    this.disciplines = [work.primary, ...(work.also ?? [])].map(discipline);
     this.prev = siblings[i - 1];
     this.next = siblings[i + 1];
-    this.related = siblings.filter(w => w !== work && w.type === work.type).slice(0, 3);
     this.title.setTitle(`${work.title} · Vijay Ravi`);
   }
 }

@@ -39,6 +39,7 @@ export interface Work {
   links?: Link[];
   media?: Media[];
   sections?: { title: string; items: string[] }[];
+  credit?: { name: string; label: string };  // byline shown as a heading on the detail page
   showTitles?: boolean;  // render the shipped-titles table on the detail page
   featured?: boolean;
 }
@@ -82,20 +83,17 @@ export const PROFILE = {
   youtube: 'https://www.youtube.com/channel/UCB9liPZa5oAvcG1cUfEQ-8A',
   resume: 'assets/VIJAY_RAVI_RESUME.pdf',
   bio: [
-    'I study Computer Science and Robotics at the University of Michigan, and I work across three disciplines that keep feeding each other.',
-    'In software, I have shipped platform features at Siemens over two internships, from an LLM agent orchestrator to the personalized dashboard framework used across Teamcenter. In games, I architect client-server systems for Roblox titles with more than 10 million combined visits. In robotics, I lead a computer-vision research team and have built perception systems for autonomous aircraft and vehicles.',
-    'The overlap is where I do my best work. The networking I learned keeping multiplayer servers honest shaped how I build microservices, and the linear algebra that aims a turret is the same math that places a pedestrian in a camera frame.',
+    'I study Computer Science and Robotics at the University of Michigan. I’ve shipped platform features at Siemens over two internships, built multiplayer systems for Roblox titles with 10M+ visits, and lead a computer-vision research team.',
+    'The three feed each other: the networking that keeps multiplayer servers honest shaped how I build microservices, and the math that aims a turret is the same math that finds a pedestrian in a camera frame.',
   ],
-  hobbies: ['Carnatic violin', 'Guitar', 'Trumpet', 'Cross country', 'Weightlifting', 'Volleyball'],
+  interests: ['Rock climbing', 'Basketball', 'Carnatic violin', 'Guitar', 'Trumpet', 'Cross country', 'Weightlifting', 'Volleyball'],
 };
 
 export const HOME_STATS: Stat[] = [
-  { value: '2×', label: 'Software engineering internships at Siemens' },
-  { value: '10M+', label: 'Player visits on Roblox titles I engineered for' },
-  { value: '~1,000', label: 'Peak concurrent players on a single title' },
+  { value: '2×', label: 'SWE internships at Siemens' },
+  { value: '10M+', label: 'Player visits on games I engineered for' },
   { value: '3', label: 'Computer-vision research labs' },
   { value: '3.81', label: 'GPA, James B. Angell Scholar' },
-  { value: 'PMLE', label: 'Google Cloud Professional ML Engineer' },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -127,7 +125,7 @@ export const DISCIPLINES: DisciplineInfo[] = [
       { group: 'Data', items: ['MySQL', 'OracleDB', 'pandas', 'scikit-learn'] },
       { group: 'Practice', items: ['Microservices', 'REST', 'CI/CD', 'Test automation', 'Agile', 'Object-oriented design'] },
     ],
-    cvNote: 'Model pipelines, data tooling and edge deployment: the software half of perception.',
+    cvNote: 'the software half of perception, from model pipelines to edge deployment.',
   },
   {
     id: 'games',
@@ -152,7 +150,7 @@ export const DISCIPLINES: DisciplineInfo[] = [
       { group: 'Systems', items: ['Client-server networking', 'Buffer serialization', 'Data persistence', 'State machines', 'Rate limiting', 'Matchmaking'] },
       { group: 'Gameplay', items: ['Combat & skills', 'Aim assist', 'NPC pathfinding', 'Animation timing', 'VFX', 'React UI'] },
     ],
-    cvNote: 'Cameras, projections and real-time frame budgets: the same math behind rendering and aim assist.',
+    cvNote: 'the same cameras, projections and frame budgets behind rendering and aim assist.',
   },
   {
     id: 'robotics',
@@ -267,7 +265,6 @@ export const WORK: Work[] = [
       { label: 'Admin demo', url: 'https://youtu.be/0SNHHDkTCNE' },
     ],
     media: [{ kind: 'youtube', id: '0SNHHDkTCNE', title: 'Helivox admin demo', thumb: ytThumb('0SNHHDkTCNE') }],
-    featured: true,
   },
   {
     id: 'recipe-ml',
@@ -345,8 +342,9 @@ export const WORK: Work[] = [
     subtitle: 'EECS 494 · Unity / C#',
     period: 'Fall 2026',
     status: 'Playable',
-    summary: 'A faithful recreation of the 1984 NES Legend of Zelda dungeon in Unity, extended with an original dash mechanic. Built by Vijay Ravi.',
-    highlightsLabel: 'What I built',
+    summary: 'A faithful recreation of the 1984 NES Legend of Zelda dungeon in Unity, extended with an original dash mechanic.',
+    credit: { name: 'Vijay Ravi', label: 'Team of two' },
+    highlightsLabel: 'My contributions',
     highlights: [
       'A robust, reusable room system with configurable doors in each cardinal direction.',
       'Grid-aligned player movement matching the original’s feel.',
@@ -356,7 +354,6 @@ export const WORK: Work[] = [
     ],
     stack: ['Unity', 'C#', 'Game design', 'Level systems'],
     links: [{ label: 'Play in browser', url: 'https://vijjr.itch.io/zelda-nes-recreation' }],
-    featured: true,
   },
   {
     id: 'fps-framework',
@@ -543,7 +540,6 @@ export const WORK: Work[] = [
     ],
     stack: ['Python', 'PyTorch', 'OpenCV', 'NumPy', 'Edge inference'],
     stats: [{ value: '100+ ft', label: 'Detection altitude' }],
-    featured: true,
   },
   {
     id: 'wayne-state-av',
@@ -698,7 +694,7 @@ export const COURSES: Course[] = [
   { code: 'EECS 398', name: 'Practical Data Science', grade: 'A+', disciplines: ['software'] },
   { name: 'Linear Algebra', grade: 'A-', disciplines: ['software', 'games', 'robotics'] },
   { code: 'EECS 494', name: 'Computer Game Design & Development', grade: 'In progress', disciplines: ['games'] },
-  { code: 'EECS 442', name: 'Computer Vision', grade: 'A', disciplines: ['robotics', 'software', 'games'] },
+  { code: 'EECS 442', name: 'Computer Vision', grade: 'A', disciplines: ['software', 'games', 'robotics'] },
   { code: 'ROB 320', name: 'Robot Operating Systems', grade: 'A', disciplines: ['robotics'] },
   { code: 'ROB 311', name: 'How to Build Robots and Make Them Move', grade: 'In progress', disciplines: ['robotics'] },
   { name: 'Self-Driving Cars', grade: 'In progress', disciplines: ['robotics'] },
@@ -764,13 +760,12 @@ export function workCode(w: Work): string {
   return `${discipline(w.primary).code}-${String(n).padStart(2, '0')}`;
 }
 
-export function coursesFor(id: Discipline): Course[] {
-  return COURSES.filter(c => c.disciplines.includes(id));
-}
-
 export interface Term { label: string; honors: Honor[]; }
 
-/** Groups honors into academic terms (Jan–Jun = Winter, Jul–Dec = Fall). */
+/** Display order for honors, applied everywhere so every term lists them the same way. */
+const HONOR_ORDER = ['University Honors', 'Dean’s List', 'James B. Angell Scholar'];
+
+/** Groups honors into academic terms (Jan–Jun = Winter, Jul–Dec = Fall), in HONOR_ORDER within each term. */
 export function honorsByTerm(): Term[] {
   const terms = new Map<string, Honor[]>();
   for (const h of HONORS) {
@@ -778,5 +773,6 @@ export function honorsByTerm(): Term[] {
     const label = `${m <= 6 ? 'Winter' : 'Fall'} ${y}`;
     terms.set(label, [...(terms.get(label) ?? []), h]);
   }
-  return [...terms].map(([label, honors]) => ({ label, honors }));
+  const rank = (h: Honor) => HONOR_ORDER.indexOf(h.name);
+  return [...terms].map(([label, honors]) => ({ label, honors: honors.sort((a, b) => rank(a) - rank(b)) }));
 }
