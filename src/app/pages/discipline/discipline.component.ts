@@ -22,7 +22,6 @@ export class DisciplineComponent {
   readonly experience: Work[];
   readonly projects: Work[];
   readonly linked: Work[];
-  readonly cvCount: number;
   readonly next: DisciplineInfo;
   readonly titles = SHIPPED_TITLES;
   readonly titlesAsOf = TITLES_AS_OF;
@@ -37,7 +36,6 @@ export class DisciplineComponent {
     this.experience = own.filter(w => w.type === 'experience');
     this.projects = own.filter(w => w.type === 'project');
     this.linked = linkedInto(id);
-    this.cvCount = own.filter(w => w.cv).length;
     this.next = DISCIPLINES[(DISCIPLINES.indexOf(this.info) + 1) % DISCIPLINES.length];
   }
 }

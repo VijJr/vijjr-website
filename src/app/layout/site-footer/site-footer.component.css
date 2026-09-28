@@ -1,10 +1,8 @@
 .site-footer { border-top: 1px solid var(--line); margin-top: clamp(64px, 9vw, 112px); }
 
 .contact {
-  display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 24px 48px;
-  padding-block: clamp(44px, 6vw, 72px);
+  padding-block: clamp(40px, 5vw, 64px);
 }
-.contact-title { font-size: clamp(2.2rem, 5.5vw, 3.75rem); font-weight: 600; letter-spacing: -0.05em; line-height: 1; }
 .contact-body { display: grid; gap: 14px; }
 
 .email {

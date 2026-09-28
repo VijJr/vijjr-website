@@ -109,9 +109,9 @@ export const DISCIPLINES: DisciplineInfo[] = [
     short: 'Software',
     shape: 'circle',
     phrase: 'software that ships',
-    lede: 'Production full-stack at enterprise scale.',
+    lede: 'Production full-stack at enterprise.',
     statement:
-      'Production engineering at enterprise scale. Two internships at Siemens shipping framework features that every Teamcenter application inherits, and a nonprofit platform I architected from an empty repo.',
+      'Two internships at Siemens shipping framework features that every Teamcenter application inherits, and a nonprofit platform I architected from an empty repo before the AI era.',
     stats: [
       { value: '2×', label: 'Siemens SWE internships' },
       { value: '−75%', label: 'Initial page-load API calls' },
@@ -135,9 +135,9 @@ export const DISCIPLINES: DisciplineInfo[] = [
     short: 'Games',
     shape: 'square',
     phrase: 'games people play',
-    lede: 'Multiplayer systems that hold up under real players.',
+    lede: 'Multiplayer games that scale for real players.',
     statement:
-      'Multiplayer systems that hold up under real players. Networking, persistence and security for Roblox titles with 10M+ combined visits, combat systems with frame-tight feel, and Unity work in C#.',
+      'Multiplayer games that scale for real players. Networking, persistence and security for Roblox titles with 10M+ combined visits, combat systems, and Unity work in C#.',
     stats: [
       { value: '10M+', label: 'Player visits' },
       { value: '~1,000', label: 'Peak concurrent players' },
@@ -160,9 +160,9 @@ export const DISCIPLINES: DisciplineInfo[] = [
     short: 'Robotics',
     shape: 'triangle',
     phrase: 'robots that see',
-    lede: 'Perception research and hardware, from lab to field.',
+    lede: 'Perception research and hardware.',
     statement:
-      'Perception first. Computer-vision research across three labs, autonomous payload drops at M-Fly, and hardware I have been building since high school. Computer vision lives here and links out to Software and Games.',
+      'Computer-vision research across three labs, autonomous payload drops at M-Fly, and hardware I have been building since high school.',
     stats: [
       { value: '3', label: 'Research labs' },
       { value: '100+', label: 'Glioblastoma slides modeled' },
@@ -173,6 +173,7 @@ export const DISCIPLINES: DisciplineInfo[] = [
       { group: 'Perception', items: ['PyTorch', 'OpenCV', 'NumPy', 'YOLO', 'ResNet', 'U-Net', 'Slideflow'] },
       { group: 'Systems', items: ['Robot operating systems', 'Feedback control', 'Edge inference', 'Serial & radio links'] },
       { group: 'Hardware', items: ['Arduino', 'ATtiny85', 'Servos', 'IMU', 'HC-12 radio', 'SIM800L GSM', 'PCB soldering'] },
+      { group: 'Design', items: ['CAD', 'Part design', 'Hardware modeling', 'Thermal modeling'] },
       { group: 'Languages', items: ['Python', 'C++', 'C', 'Java'] },
     ],
   },

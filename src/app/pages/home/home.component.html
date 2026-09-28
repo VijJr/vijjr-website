@@ -9,7 +9,7 @@
         <ng-container *ngIf="last">and </ng-container>
         <a class="phrase" [routerLink]="'/' + d.id" [attr.data-d]="d.id"
            (mouseenter)="highlight = d.id" (mouseleave)="highlight = null"
-           (focus)="highlight = d.id" (blur)="highlight = null"><app-glyph [d]="d.id" [size]="14"></app-glyph><em>{{ phraseHead(d) }}</em> {{ phraseTail(d) }}</a>{{ last ? '.' : ',' }}
+           (focus)="highlight = d.id" (blur)="highlight = null"><app-glyph [d]="d.id" [size]="14"></app-glyph><span class="phrase-word">{{ phraseHead(d) }}</span> {{ phraseTail(d) }}</a>{{ last ? '.' : ',' }}
       </ng-container>
     </p>
     <div class="hero-cta reveal" style="--i: 3">

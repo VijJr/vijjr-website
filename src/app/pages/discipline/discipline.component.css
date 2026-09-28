@@ -6,8 +6,6 @@
   display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px;
   margin-top: 16px; font-size: 14px; color: var(--muted);
 }
-.note a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-2); }
-.note a:hover { text-decoration-color: var(--ink); }
 
 .title-link { font-weight: 500; }
 .title-link:hover { text-decoration: underline; text-underline-offset: 3px; }

@@ -24,11 +24,7 @@
 .phrase { color: var(--ink); background-image: linear-gradient(var(--accent), var(--accent)); background-size: 0 1.5px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .35s var(--ease); }
 .phrase:hover, .phrase:focus-visible { background-size: 100% 1.5px; }
 .phrase app-glyph { margin-right: .32em; vertical-align: .06em; }
-.phrase em {
-  font-family: var(--font-serif); font-style: italic; font-weight: 400;
-  font-size: 1.14em; letter-spacing: -0.01em;
-  color: var(--accent-ink);
-}
+.phrase-word { color: var(--accent-ink); font-weight: 500; }
 
 .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
 
