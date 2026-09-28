@@ -1,0 +1,31 @@
+<footer class="site-footer">
+  <div class="wrap contact">
+    <p class="label">Contact</p>
+    <h2 class="contact-title">Let’s build <span class="serif">something.</span></h2>
+    <p class="contact-copy">
+      Open to new-grad roles in software, game, and robotics engineering.
+      The fastest way to reach me is email.
+    </p>
+    <a class="email" [href]="'mailto:' + profile.email">
+      {{ profile.email }}
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" /></svg>
+    </a>
+    <ul class="contact-links">
+      <li><a class="btn" [href]="profile.resume" target="_blank" rel="noopener">Résumé (PDF)</a></li>
+      <li><a class="btn ghost" [href]="profile.linkedin" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+      <li><a class="btn ghost" [href]="profile.github" target="_blank" rel="noopener">GitHub ↗</a></li>
+      <li><a class="btn ghost" [href]="profile.itch" target="_blank" rel="noopener">itch.io ↗</a></li>
+    </ul>
+  </div>
+
+  <div class="wrap foot-bar">
+    <span>© {{ year }} {{ profile.name }}</span>
+    <nav class="foot-nav" aria-label="Footer">
+      <a *ngFor="let d of disciplines" [routerLink]="'/' + d.id">
+        <app-glyph [d]="d.id" [size]="8"></app-glyph>{{ d.short }}
+      </a>
+      <a routerLink="/about">About</a>
+    </nav>
+    <span>{{ profile.campus }}</span>
+  </div>
+</footer>

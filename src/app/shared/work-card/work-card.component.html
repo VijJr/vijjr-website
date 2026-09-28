@@ -1,0 +1,42 @@
+<a class="card" [routerLink]="['/work', work.id]" [attr.data-d]="work.primary">
+  <div class="card-media" *ngIf="showMedia">
+    <img *ngIf="thumb; else poster" [src]="thumb" alt="" loading="lazy" decoding="async">
+    <ng-template #poster>
+      <div class="poster">
+        <app-glyph [d]="work.primary" [size]="64"></app-glyph>
+        <span class="poster-code">{{ code }}</span>
+      </div>
+    </ng-template>
+    <span class="play-badge" *ngIf="thumb" aria-hidden="true">
+      <svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 1l7 4-7 4z" fill="currentColor"/></svg>
+      Video
+    </span>
+  </div>
+
+  <div class="card-body">
+    <div class="card-meta">
+      <app-glyph [d]="work.primary" [size]="9"></app-glyph>
+      <span>{{ code }}</span>
+      <span class="sep">/</span>
+      <span>{{ work.kind }}</span>
+      <span class="grow"></span>
+      <span class="status" *ngIf="work.status">{{ work.status }}</span>
+      <span *ngIf="!work.status">{{ work.period }}</span>
+    </div>
+
+    <h3 class="card-title">{{ work.title }}</h3>
+    <p class="card-sub">{{ work.subtitle }}</p>
+    <p class="card-summary">{{ work.summary }}</p>
+
+    <div class="card-foot">
+      <ul class="chips">
+        <li *ngIf="work.cv" class="chip-cv">Computer vision</li>
+        <li *ngFor="let s of work.stack.slice(0, work.cv ? 3 : 4)">{{ s }}</li>
+      </ul>
+      <span class="also" *ngIf="work.also?.length" [attr.aria-label]="'Also linked to ' + work.also!.join(' and ')">
+        <span class="also-label">Also</span>
+        <app-glyph *ngFor="let a of work.also" [d]="a" [size]="9"></app-glyph>
+      </span>
+    </div>
+  </div>
+</a>

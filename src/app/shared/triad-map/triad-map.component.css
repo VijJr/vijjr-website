@@ -1,0 +1,67 @@
+:host { display: block; position: relative; }
+
+svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+.frame { fill: color-mix(in srgb, var(--surface) 55%, transparent); stroke: var(--line-2); stroke-width: 1; }
+.medial { fill: none; stroke: var(--line-2); stroke-width: 1; stroke-dasharray: 2 5; }
+.center line { stroke: var(--line-2); stroke-width: 1; }
+
+/* Vertices */
+.vertex { cursor: pointer; }
+.vertex circle, .vertex rect, .vertex polygon {
+  fill: var(--bg); stroke: var(--accent); stroke-width: 1.5;
+  transition: fill .25s var(--ease);
+}
+.vertex.on circle, .vertex.on rect, .vertex.on polygon,
+.vertex:hover circle, .vertex:hover rect, .vertex:hover polygon { fill: var(--accent); }
+.vertex text {
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase;
+  fill: var(--muted); transition: fill .25s;
+}
+.vertex text .idx { fill: var(--line-2); }
+.vertex.on text, .vertex:hover text { fill: var(--ink); }
+
+/* Points */
+.pt { cursor: pointer; }
+.pt .hit { fill: transparent; }
+.pt .pop {
+  animation: pop .7s var(--ease) both;
+  animation-delay: calc(350ms + var(--i, 0) * 30ms);
+}
+.pt .shape {
+  fill: var(--accent);
+  transform-box: fill-box; transform-origin: center;
+  transition: transform .25s var(--ease), opacity .3s var(--ease);
+}
+.pt.on .shape { transform: scale(1.75); }
+.pt.dim .shape { opacity: .14; }
+
+.links line { stroke: var(--accent); stroke-width: 1; stroke-dasharray: 3 4; opacity: .9; }
+.links line.primary { stroke-dasharray: none; }
+
+@keyframes pop {
+  from { opacity: 0; transform: scale(.2); }
+  to { opacity: 1; transform: none; }
+}
+.pop { transform-box: fill-box; transform-origin: center; }
+
+/* Tooltip */
+.tip {
+  position: absolute; z-index: 2;
+  display: grid; gap: 2px;
+  min-width: 180px; max-width: 260px;
+  padding: 10px 12px 11px;
+  border-radius: 10px;
+  background: var(--ink); color: var(--bg);
+  box-shadow: 0 14px 34px -12px rgba(0, 0, 0, .35);
+  transform: translate(-50%, calc(-100% - 16px));
+  pointer-events: none;
+  animation: tip-in .18s var(--ease) both;
+}
+.tip.align-left { transform: translate(-14%, calc(-100% - 16px)); }
+.tip.align-right { transform: translate(-86%, calc(-100% - 16px)); }
+.tip-code { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; opacity: .6; }
+.tip-title { font-size: 14px; font-weight: 550; line-height: 1.3; }
+.tip-sub { font-size: 12.5px; opacity: .7; line-height: 1.3; }
+
+@keyframes tip-in { from { opacity: 0; } }

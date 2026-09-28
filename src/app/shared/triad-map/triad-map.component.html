@@ -1,0 +1,49 @@
+<!-- Decorative summary: every entry is also reachable through the discipline pages. -->
+<svg [attr.viewBox]="'0 0 ' + W + ' ' + H" aria-hidden="true" focusable="false">
+  <polygon class="frame" [attr.points]="frame"></polygon>
+  <polygon class="medial" [attr.points]="medial"></polygon>
+  <g class="center" [attr.transform]="'translate(' + center[0] + ' ' + center[1] + ')'">
+    <line x1="-5" y1="0" x2="5" y2="0"></line>
+    <line x1="0" y1="-5" x2="0" y2="5"></line>
+  </g>
+
+  <g class="links" *ngIf="active">
+    <line *ngFor="let d of disciplinesOf(active.work); let first = first"
+          [class.primary]="first" [attr.data-d]="d"
+          [attr.x1]="active.x" [attr.y1]="active.y"
+          [attr.x2]="vertex[d][0]" [attr.y2]="vertex[d][1]"></line>
+  </g>
+
+  <g *ngFor="let d of disciplines" class="vertex" [class.on]="isVertexOn(d.id)" [attr.data-d]="d.id" (click)="go(d.id)">
+    <g [attr.transform]="'translate(' + vertex[d.id][0] + ' ' + vertex[d.id][1] + ')'">
+      <circle *ngIf="d.shape === 'circle'" r="7"></circle>
+      <rect *ngIf="d.shape === 'square'" x="-6.5" y="-6.5" width="13" height="13"></rect>
+      <polygon *ngIf="d.shape === 'triangle'" points="0,-8 7.4,5 -7.4,5"></polygon>
+    </g>
+    <text [attr.x]="labels[d.id].x" [attr.y]="labels[d.id].y" [attr.text-anchor]="labels[d.id].anchor">
+      <tspan class="idx">{{ d.index }}</tspan> {{ d.short }}
+    </text>
+  </g>
+
+  <g *ngFor="let p of points; let i = index" class="pt"
+     [class.dim]="isDim(p)" [class.on]="active === p" [attr.data-d]="p.work.primary"
+     [attr.transform]="'translate(' + p.x + ' ' + p.y + ')'"
+     (mouseenter)="active = p" (mouseleave)="active = null" (click)="open(p)">
+    <g class="pop" [style.--i]="i">
+      <g class="shape">
+        <circle *ngIf="p.shape === 'circle'" r="4.6"></circle>
+        <rect *ngIf="p.shape === 'square'" x="-4.1" y="-4.1" width="8.2" height="8.2"></rect>
+        <polygon *ngIf="p.shape === 'triangle'" points="0,-5.6 5,3.2 -5,3.2"></polygon>
+      </g>
+    </g>
+    <circle class="hit" r="11"></circle>
+  </g>
+</svg>
+
+<div class="tip" *ngIf="active" [attr.data-d]="active.work.primary"
+     [style.left.%]="active.x / W * 100" [style.top.%]="active.y / H * 100"
+     [class.align-left]="active.x < 130" [class.align-right]="active.x > 270">
+  <span class="tip-code">{{ active.code }} · {{ active.work.kind }}</span>
+  <span class="tip-title">{{ active.work.title }}</span>
+  <span class="tip-sub">{{ active.work.subtitle }}</span>
+</div>

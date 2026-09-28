@@ -1,0 +1,79 @@
+:host { display: block; }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+  transition: border-color .25s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -24px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.card-media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+.card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.card:hover .card-media img { transform: scale(1.035); }
+
+.poster {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  background:
+    radial-gradient(circle at 70% 30%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%),
+    var(--bg-2);
+}
+.poster app-glyph { opacity: .9; }
+.poster-code {
+  position: absolute; left: 14px; bottom: 12px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; color: var(--muted);
+}
+
+.play-badge {
+  position: absolute; left: 12px; bottom: 12px;
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 26px; padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(10, 10, 10, .72); color: #fff;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em;
+  backdrop-filter: blur(6px);
+}
+
+.card-body { display: flex; flex-direction: column; gap: 6px; padding: 20px 20px 18px; flex: 1; }
+
+.card-meta {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.card-meta .sep { opacity: .5; }
+.card-meta .grow { flex: 1; }
+.status {
+  padding: 2px 8px; border-radius: 999px;
+  color: var(--accent-ink);
+  background: color-mix(in srgb, var(--accent) 13%, transparent);
+}
+
+.card-title { font-size: 1.28rem; font-weight: 550; letter-spacing: -0.025em; line-height: 1.2; }
+.card-sub { font-size: 14px; color: var(--muted); }
+.card-summary { margin-top: 8px; font-size: 15px; line-height: 1.55; color: var(--ink-2); }
+
+.card-foot {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 12px;
+  margin-top: auto; padding-top: 18px;
+}
+.chip-cv { color: var(--rb-ink) !important; border-color: color-mix(in srgb, var(--rb) 55%, transparent) !important; }
+
+.also { display: inline-flex; align-items: center; gap: 5px; flex: none; padding-bottom: 5px; }
+.also-label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }

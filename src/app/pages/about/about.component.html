@@ -1,0 +1,135 @@
+<header class="wrap about-hero">
+  <p class="label reveal">About</p>
+  <h1 class="display-2 reveal" style="--i: 1">One engineer, <span class="serif">three</span> disciplines.</h1>
+  <div class="bio reveal" style="--i: 2">
+    <p *ngFor="let para of profile.bio">{{ para }}</p>
+  </div>
+</header>
+
+<!-- Education -->
+<section class="wrap section">
+  <header class="section-head">
+    <p class="label">Education</p>
+    <h2>{{ profile.school }}</h2>
+  </header>
+  <div class="edu">
+    <dl class="facts">
+      <div><dt class="label">Degree</dt><dd>{{ profile.degree }}</dd></div>
+      <div><dt class="label">GPA</dt><dd class="big">{{ profile.gpa }}</dd></div>
+      <div><dt class="label">Graduation</dt><dd>{{ profile.graduation }}</dd></div>
+      <div><dt class="label">Campus</dt><dd>{{ profile.campus }}</dd></div>
+    </dl>
+    <div>
+      <app-honors></app-honors>
+      <details class="honor-log">
+        <summary>Every honor, by date</summary>
+        <ol>
+          <li *ngFor="let h of honors">
+            <span class="mono muted">{{ formatDate(h.date) }}</span>
+            <span>{{ h.name }}</span>
+          </li>
+        </ol>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Coursework -->
+<section class="wrap section">
+  <header class="section-head">
+    <p class="label">Coursework</p>
+    <h2>What I’ve studied.</h2>
+  </header>
+
+  <div class="filters" role="group" aria-label="Filter coursework by discipline">
+    <button type="button" class="filter" [attr.aria-pressed]="filter === 'all'" (click)="filter = 'all'">All</button>
+    <button *ngFor="let d of disciplines" type="button" class="filter" [attr.data-d]="d.id"
+            [attr.aria-pressed]="filter === d.id" (click)="filter = d.id">
+      <app-glyph [d]="d.id" [size]="9"></app-glyph>{{ d.short }}
+    </button>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr><th class="hide-sm">Course</th><th>Name</th><th class="hide-sm">Discipline</th><th class="num">Grade</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of courses">
+        <td class="mono muted hide-sm code-col">{{ c.code || '—' }}</td>
+        <td>{{ c.name }}</td>
+        <td class="hide-sm"><span class="glyphs"><app-glyph *ngFor="let d of c.disciplines" [d]="d" [size]="10"></app-glyph></span></td>
+        <td class="num mono" [class.muted]="c.grade === 'In progress'">{{ c.grade }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Recognition -->
+<section class="wrap section">
+  <header class="section-head">
+    <p class="label">Recognition</p>
+    <h2>Certifications &amp; awards.</h2>
+  </header>
+  <ul class="recog">
+    <li *ngFor="let r of recognition">
+      <div>
+        <p class="recog-name">{{ r.name }}</p>
+        <p class="recog-detail">{{ r.detail }}<ng-container *ngIf="r.year"> · {{ r.year }}</ng-container></p>
+      </div>
+      <button *ngIf="r.image" type="button" class="btn ghost btn-sm" (click)="openCert(r)">View certificate</button>
+    </li>
+  </ul>
+</section>
+
+<!-- Leadership & teaching -->
+<section class="wrap section">
+  <header class="section-head">
+    <p class="label">Leadership &amp; teaching</p>
+    <h2>Beyond the code.</h2>
+  </header>
+  <ol class="rows">
+    <li *ngFor="let a of activities">
+      <a *ngIf="a.workId; else plain" class="row" [routerLink]="['/work', a.workId]" [attr.data-d]="a.discipline">
+        <ng-container *ngTemplateOutlet="activity; context: { $implicit: a }"></ng-container>
+        <span class="row-arrow" aria-hidden="true">→</span>
+      </a>
+      <ng-template #plain>
+        <div class="row" [attr.data-d]="a.discipline">
+          <ng-container *ngTemplateOutlet="activity; context: { $implicit: a }"></ng-container>
+          <span></span>
+        </div>
+      </ng-template>
+    </li>
+  </ol>
+  <ng-template #activity let-a>
+    <span class="row-period">{{ a.period }}</span>
+    <span class="row-main">
+      <span class="row-title">{{ a.role }}</span>
+      <span class="row-sub">{{ a.org }}</span>
+    </span>
+    <span class="row-detail"><span class="row-summary">{{ a.detail }}</span></span>
+  </ng-template>
+</section>
+
+<!-- Off the clock -->
+<section class="wrap section">
+  <header class="section-head">
+    <p class="label">Off the clock</p>
+    <h2>Also: <span class="serif">music and miles.</span></h2>
+  </header>
+  <ul class="chips hobbies">
+    <li *ngFor="let h of profile.hobbies">{{ h }}</li>
+  </ul>
+</section>
+
+<dialog #certDialog class="cert-dialog" (click)="onDialogClick($event)" (close)="cert = null" aria-labelledby="cert-title">
+  <div class="cert-inner" *ngIf="cert">
+    <div class="cert-head">
+      <p id="cert-title">{{ cert.name }}</p>
+      <button type="button" class="icon-btn" (click)="closeCert()" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+    </div>
+    <img [src]="cert.image" [alt]="cert.name + ' certificate'">
+  </div>
+</dialog>

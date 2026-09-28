@@ -1,0 +1,38 @@
+.disc-hero { display: grid; gap: 26px; padding-block: clamp(40px, 7vw, 96px) clamp(8px, 2vw, 24px); }
+.disc-title { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 28px); }
+.disc-title app-glyph { flex: none; }
+.disc-title .display { font-size: clamp(2.6rem, 8vw, 6.5rem); }
+
+.note {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px;
+  margin-top: 18px; font-size: 14px; color: var(--muted);
+}
+.note a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-2); }
+.note a:hover { text-decoration-color: var(--ink); }
+
+.title-link { font-weight: 500; }
+.title-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.pill { display: inline-block; font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--muted); white-space: nowrap; }
+.pill-live { border-color: transparent; background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent-ink); }
+
+.linked-note { margin: -12px 0 28px; }
+
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+.toolkit { display: grid; gap: 22px; margin: 0; }
+.toolkit dd { margin: 10px 0 0; }
+.courses .label { margin-bottom: 10px; }
+.code-col { width: 92px; white-space: nowrap; }
+@media (max-width: 860px) { .split { grid-template-columns: 1fr; } }
+
+.next {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 10px 20px;
+  margin-top: clamp(24px, 4vw, 48px);
+  padding: clamp(28px, 4vw, 44px) clamp(20px, 3vw, 36px);
+  border: 1px solid var(--line); border-radius: var(--radius);
+  transition: border-color .3s, background .3s;
+}
+.next:hover { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 6%, transparent); }
+.next .label { grid-column: 1 / -1; }
+.next-name { display: flex; align-items: center; gap: 16px; font-size: clamp(1.8rem, 4.5vw, 3.2rem); font-weight: 550; letter-spacing: -0.045em; line-height: 1.05; }
+.next-arrow { font-size: 28px; transition: transform .3s var(--ease); }
+.next:hover .next-arrow { transform: translateX(6px); }

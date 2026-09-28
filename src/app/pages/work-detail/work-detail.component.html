@@ -1,0 +1,114 @@
+<article *ngIf="work" [attr.data-d]="work.primary">
+  <header class="wrap detail-head">
+    <nav class="label crumbs" aria-label="Breadcrumb">
+      <a routerLink="/">Index</a><span>/</span>
+      <a [routerLink]="'/' + info.id">{{ info.index }} {{ info.short }}</a><span>/</span>
+      <span>{{ code }}</span>
+    </nav>
+
+    <div class="detail-meta label">
+      <app-glyph [d]="work.primary" [size]="11"></app-glyph>
+      <span>{{ work.kind }}</span><span class="sep">·</span><span>{{ work.period }}</span>
+      <span class="status" *ngIf="work.status">{{ work.status }}</span>
+    </div>
+
+    <h1 class="display-2">{{ work.title }}</h1>
+    <p class="detail-sub">{{ work.subtitle }}<ng-container *ngIf="work.location"> · {{ work.location }}</ng-container></p>
+    <p class="lede">{{ work.summary }}</p>
+
+    <div class="detail-links" *ngIf="work.links?.length">
+      <a *ngFor="let l of work.links; let first = first" class="btn" [class.ghost]="!first"
+         [href]="l.url" target="_blank" rel="noopener">{{ l.label }} ↗</a>
+    </div>
+  </header>
+
+  <div class="wrap" *ngIf="work.stats?.length">
+    <div class="stats">
+      <div class="stat" *ngFor="let s of work.stats">
+        <span class="stat-value">{{ s.value }}</span>
+        <span class="stat-label">{{ s.label }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap media-grid" *ngIf="work.media?.length">
+    <app-media-embed *ngFor="let m of work.media" [media]="m"></app-media-embed>
+  </div>
+
+  <div class="wrap detail-grid">
+    <div class="detail-main">
+      <p class="context" *ngIf="work.context">{{ work.context }}</p>
+
+      <h2 class="label">{{ work.highlightsLabel || 'Highlights' }}</h2>
+      <ol class="highlights">
+        <li *ngFor="let h of work.highlights; let i = index">
+          <span class="n">{{ pad(i) }}</span>
+          <p>{{ h }}</p>
+        </li>
+      </ol>
+
+      <section class="extra" *ngFor="let s of work.sections">
+        <h2 class="label">{{ s.title }}</h2>
+        <ul class="chips"><li *ngFor="let item of s.items">{{ item }}</li></ul>
+      </section>
+
+      <section class="extra" *ngIf="work.showTitles">
+        <h2 class="label">Titles</h2>
+        <table class="table">
+          <tbody>
+            <tr *ngFor="let t of titles">
+              <td><a class="title-link" [href]="t.url" target="_blank" rel="noopener">{{ t.name }} ↗</a></td>
+              <td class="muted hide-sm">{{ t.studio }}</td>
+              <td class="num">{{ t.visits ? t.visits + ' visits' : t.status }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="fine">{{ titlesAsOf }}.</p>
+      </section>
+    </div>
+
+    <aside class="detail-aside">
+      <div class="aside-block">
+        <h2 class="label">Stack</h2>
+        <ul class="chips"><li *ngFor="let s of work.stack">{{ s }}</li></ul>
+      </div>
+
+      <div class="aside-block">
+        <h2 class="label">Filed under</h2>
+        <a class="disc-link" [routerLink]="'/' + info.id" [attr.data-d]="info.id">
+          <app-glyph [d]="info.id" [size]="12"></app-glyph>{{ info.name }}
+        </a>
+      </div>
+
+      <div class="aside-block" *ngIf="linked.length">
+        <h2 class="label">Also linked to</h2>
+        <a *ngFor="let d of linked" class="disc-link" [routerLink]="'/' + d.id" [attr.data-d]="d.id">
+          <app-glyph [d]="d.id" [size]="12"></app-glyph>{{ d.name }}
+        </a>
+        <p class="fine" *ngIf="work.cv">Computer vision work lives in Robotics and is linked from Software and Games.</p>
+      </div>
+    </aside>
+  </div>
+
+  <nav class="wrap pager" aria-label="More in this discipline">
+    <a *ngIf="prev; else spacer" class="pager-link" [routerLink]="['/work', prev.id]">
+      <span class="label">← Previous</span>
+      <span class="pager-title">{{ prev.title }}</span>
+    </a>
+    <ng-template #spacer><span></span></ng-template>
+    <a *ngIf="next" class="pager-link pager-next" [routerLink]="['/work', next.id]">
+      <span class="label">Next →</span>
+      <span class="pager-title">{{ next.title }}</span>
+    </a>
+  </nav>
+
+  <section class="wrap section" *ngIf="related.length">
+    <header class="section-head">
+      <p class="label">More in {{ info.short }}</p>
+      <h2>Keep exploring.</h2>
+    </header>
+    <div class="grid">
+      <app-work-card *ngFor="let w of related" [work]="w" [showMedia]="info.id === 'games'"></app-work-card>
+    </div>
+  </section>
+</article>

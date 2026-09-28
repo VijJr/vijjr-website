@@ -1,0 +1,34 @@
+<header class="site-header">
+  <div class="wrap bar">
+    <a routerLink="/" class="brand" aria-label="Vijay Ravi, home">
+      <svg class="mark" width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+        <circle class="m-sw" cx="16" cy="8.5" r="5.5" />
+        <rect class="m-gd" x="3.5" y="18" width="10.5" height="10.5" />
+        <polygon class="m-rb" points="23.5,17.5 29.5,28.5 17.5,28.5" />
+      </svg>
+      <span class="brand-name">Vijay Ravi</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a *ngFor="let d of disciplines" [routerLink]="'/' + d.id" routerLinkActive="active" [attr.data-d]="d.id">
+        <app-glyph [d]="d.id" [size]="9"></app-glyph>
+        {{ d.short }}
+      </a>
+      <a routerLink="/about" routerLinkActive="active">About</a>
+    </nav>
+
+    <div class="actions">
+      <button type="button" class="icon-btn" (click)="toggleTheme()"
+              [attr.aria-label]="theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'">
+        <svg *ngIf="theme === 'dark'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2" />
+          <path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6" />
+        </svg>
+        <svg *ngIf="theme !== 'dark'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" />
+        </svg>
+      </button>
+      <a class="btn btn-sm" [href]="profile.resume" target="_blank" rel="noopener">Résumé</a>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,146 @@
+<article [attr.data-d]="info.id">
+  <header class="wrap disc-hero">
+    <nav class="label crumbs reveal" aria-label="Breadcrumb">
+      <a routerLink="/">Index</a><span>/</span><span>{{ info.index }} {{ info.short }}</span>
+    </nav>
+    <div class="disc-title reveal" style="--i: 1">
+      <app-glyph [d]="info.id" [size]="52"></app-glyph>
+      <h1 class="display">{{ info.name }}</h1>
+    </div>
+    <p class="lede reveal" style="--i: 2">{{ info.statement }}</p>
+    <div class="stats reveal" style="--i: 3">
+      <div class="stat" *ngFor="let s of info.stats">
+        <span class="stat-value">{{ s.value }}</span>
+        <span class="stat-label">{{ s.label }}</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Experience -->
+  <section class="wrap section" *ngIf="experience.length">
+    <header class="section-head">
+      <p class="label">{{ labels.experience }}</p>
+      <h2>Where I’ve done the work.</h2>
+    </header>
+    <ol class="rows">
+      <li *ngFor="let w of experience">
+        <a class="row" [routerLink]="['/work', w.id]" [attr.data-d]="w.primary">
+          <span class="row-period">{{ w.period }}</span>
+          <span class="row-main">
+            <span class="row-title">{{ w.title }}</span>
+            <span class="row-sub">{{ w.subtitle }}<ng-container *ngIf="w.location"> · {{ w.location }}</ng-container></span>
+          </span>
+          <span class="row-detail">
+            <span class="row-summary">{{ w.summary }}</span>
+            <ul class="chips">
+              <li *ngIf="w.cv" class="chip-cv">Computer vision</li>
+              <li *ngFor="let s of w.stack.slice(0, 5)">{{ s }}</li>
+            </ul>
+          </span>
+          <span class="row-arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+    </ol>
+    <p class="note" *ngIf="cvCount">
+      <app-glyph d="robotics" [size]="10"></app-glyph>
+      Computer vision entries are filed here and cross-linked to
+      <a routerLink="/software">Software</a> and <a routerLink="/games">Games</a>.
+    </p>
+  </section>
+
+  <!-- Games: shipped titles -->
+  <section class="wrap section" *ngIf="info.id === 'games'">
+    <header class="section-head">
+      <p class="label">Titles</p>
+      <h2>Games I’ve engineered for.</h2>
+    </header>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr><th>Title</th><th class="hide-sm">Studio</th><th class="hide-sm">Genre</th><th class="num">Visits</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let t of titles">
+            <td><a class="title-link" [href]="t.url" target="_blank" rel="noopener">{{ t.name }} ↗</a></td>
+            <td class="hide-sm muted">{{ t.studio }}</td>
+            <td class="hide-sm muted">{{ t.genre || '—' }}</td>
+            <td class="num">{{ t.visits || '—' }}</td>
+            <td><span class="pill" [class.pill-live]="t.status === 'Live'">{{ t.status }}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">{{ titlesAsOf }}. Combined across all 10+ titles: 10M+ visits.</p>
+  </section>
+
+  <!-- Projects -->
+  <section class="wrap section" *ngIf="projects.length">
+    <header class="section-head">
+      <p class="label">{{ labels.projects }}</p>
+      <h2>Things I’ve built.</h2>
+    </header>
+    <div class="grid">
+      <app-work-card *ngFor="let w of projects" [work]="w" [showMedia]="info.id === 'games'"></app-work-card>
+    </div>
+  </section>
+
+  <!-- Cross-linked computer vision -->
+  <section class="wrap section" *ngIf="cvLinked.length" data-d="robotics">
+    <header class="section-head">
+      <p class="label">Linked from Robotics</p>
+      <h2>Computer vision</h2>
+    </header>
+    <p class="lede linked-note">{{ info.cvNote }}</p>
+    <div class="grid">
+      <app-work-card *ngFor="let w of cvLinked" [work]="w"></app-work-card>
+    </div>
+  </section>
+
+  <!-- Other cross-links -->
+  <section class="wrap section" *ngIf="otherLinked.length">
+    <header class="section-head">
+      <p class="label">Cross-linked</p>
+      <h2>Also relevant here.</h2>
+    </header>
+    <div class="grid">
+      <app-work-card *ngFor="let w of otherLinked" [work]="w"></app-work-card>
+    </div>
+  </section>
+
+  <!-- Toolkit + coursework -->
+  <section class="wrap section">
+    <header class="section-head">
+      <p class="label">Toolkit</p>
+      <h2>What I reach for.</h2>
+    </header>
+    <div class="split">
+      <dl class="toolkit">
+        <div *ngFor="let g of info.toolkit">
+          <dt class="label">{{ g.group }}</dt>
+          <dd><ul class="chips"><li *ngFor="let t of g.items">{{ t }}</li></ul></dd>
+        </div>
+      </dl>
+      <div class="courses">
+        <p class="label">Relevant coursework</p>
+        <table class="table compact">
+          <tbody>
+            <tr *ngFor="let c of courses">
+              <td class="mono muted code-col">{{ c.code || '—' }}</td>
+              <td>{{ c.name }}</td>
+              <td class="num mono" [class.muted]="c.grade === 'In progress'">{{ c.grade }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next -->
+  <nav class="wrap" aria-label="Next discipline">
+    <a class="next" [routerLink]="'/' + next.id" [attr.data-d]="next.id">
+      <span class="label">Next · {{ next.index }}</span>
+      <span class="next-name"><app-glyph [d]="next.id" [size]="30"></app-glyph>{{ next.name }}</span>
+      <span class="next-arrow" aria-hidden="true">→</span>
+    </a>
+  </nav>
+</article>
