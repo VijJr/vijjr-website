@@ -366,7 +366,7 @@ export const WORK: Work[] = [
     period: 'Fall 2026',
     status: 'Playable',
     summary: 'A miner is trying to harvest all the ores, but every time they try to mine, enemies spawn. Survive as long as possible by trading ores for special abilities.',
-    credit: { name: 'Vijay Ravi', label: 'Team of two' },
+    credit: { name: 'Vijay Ravi', label: 'Team of one' },
     highlightsLabel: 'My contributions',
     highlights: [
       'Raycasting systems with tracers and mouse-coordinate aiming.',
